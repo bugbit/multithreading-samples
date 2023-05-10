@@ -4,16 +4,20 @@
 <html>
 
 <head>
-  <title>ComputePi.WasmBrowser</title>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="modulepreload" href="./main.js" />
-  <link rel="modulepreload" href="./dotnet.js" />
+    <title>ComputePi.WasmBrowser</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="modulepreload" href="./main.js" />
+    <link rel="modulepreload" href="./dotnet.js" />
 </head>
 
 <body>
-  <span id="out"></span>
-  <script type='module' src="./main.js"></script>
+    <p>
+        <button onclick="globalThis.SerialPi()">SerialPi</button>
+        <button onclick="globalThis.ThreadPi()">ThreadPi</button>
+    </p>
+    <span id="out"></span>
+    <script type='module' src="./main.js"></script>
 </body>
 
 </html>

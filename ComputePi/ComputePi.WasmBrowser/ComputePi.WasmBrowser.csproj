@@ -5,12 +5,13 @@
 		<WasmMainJSPath>main.js</WasmMainJSPath>
 		<OutputType>Exe</OutputType>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!-- use the threaded build of the .NET runtime for WebAssembly -->
+		<WasmEnableThreads>true</WasmEnableThreads>
 		<PublishTrimmed>true</PublishTrimmed>
-		<TrimMode>full</TrimMode>
 		<RunAOTCompilation>true</RunAOTCompilation>
 	</PropertyGroup>
 	<ItemGroup>
-		<ProjectReference Include="..\ComputePi.Shared\ComputePi.Shared.csproj" />
+		<PackageReference Include="Microsoft.NET.WebAssembly.Threading" Version="7.0.0-rc.2.*" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,7 +4,7 @@ namespace ComputePi.Shared
 {
     public static class CalculatePI
     {
-        const int num_steps = 100000000;
+        public const int num_steps = 100000000;
 
         public static (TimeSpan elapsed, T result) Time<T>(Func<T> work)
         {
@@ -31,17 +31,21 @@ namespace ComputePi.Shared
 
         public static double ThreadPi(int nthreads)
         {
-            var parts = CalcThreadPiParts(0, num_steps, 4).Select(part => new ThreadPiState
-            {
-                Ini = part.ini,
-                End = part.end,
-                Step = part.step
-            }).ToArray();
+            var parts = new ThreadPiState[nthreads];
             var threads = new Thread[nthreads];
+            var ini = 0;
+            var div = int.DivRem(num_steps, nthreads);
+            var step = 1.0 / (double)num_steps;
 
             for (var i = 0; i < threads.Length; i++)
             {
-                var part = parts[i];
+                var end = ini + div.Quotient + div.Remainder - 1;
+                var part = new ThreadPiState
+                {
+                    Ini = ini,
+                    End = end,
+                    Step = step
+                };
                 var thread = new Thread(state =>
                 {
                     var tState = (ThreadPiState)state!;
@@ -57,6 +61,9 @@ namespace ComputePi.Shared
                     tState.Sum = sum;
                 });
 
+                ini = end + 1;
+                div.Remainder = 0;
+                parts[i] = part;
                 threads[i] = thread;
                 thread.Start(part);
             }
@@ -72,37 +79,7 @@ namespace ComputePi.Shared
                 sum += part.Sum;
             }
 
-            return sum;
-        }
-
-        private static (int ini, int end, double step)[] CalcThreadPiParts(int i, int nsteps, int nparts)
-        {
-            var step = 1.0 / (double)nsteps;
-            var parts = new List<(int ini, int end, double step)>();
-            var stack = new Stack<(int ini, int end, double step)>();
-
-            stack.Push((i, nsteps, step));
-
-            while (stack.Count > 0)
-            {
-                var p = stack.Pop();
-
-                if (nparts - 1 > stack.Count && nparts >= 2)
-                {
-                    var _nsteps = (p.end - p.ini + 1);
-                    var middle = _nsteps / 2;
-
-                    stack.Push((p.ini, p.ini + middle - 1, step));
-                    stack.Push((p.ini + middle, p.end, step));
-                }
-                else
-                {
-                    parts.Add(p);
-                    nparts--;
-                }
-            }
-
-            return parts.ToArray();
+            return step * sum;
         }
     }
 }

@@ -12,14 +12,19 @@ setModuleImports('main.js', {
     window: {
         location: {
             href: () => globalThis.window.location.href
-        }
-    }
+        },
+        print: s => globalThis.document.getElementById('out').innerHTML += s
+    },
 });
 
 const config = getConfig();
 const exports = await getAssemblyExports(config.mainAssemblyName);
-const text = exports.MyClass.Greeting();
-console.log(text);
+//const text = exports.MyClass.Greeting();
+//console.log(text);
 
-document.getElementById('out').innerHTML = text;
+//document.getElementById('out').innerHTML = text;
+
+globalThis.SerialPi = exports.MyClass.SerialPi;
+globalThis.ThreadPi = exports.MyClass.ThreadPi;
+
 await dotnet.run();
