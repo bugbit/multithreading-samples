@@ -1,13 +1,15 @@
 {
-    "profiles": {
-      "ComputePi.WasmBrowser": {
-        "commandName": "Project",
-        "launchBrowser": true,
-        "environmentVariables": {
-          "ASPNETCORE_ENVIRONMENT": "Development"
-        },
-        "applicationUrl": "https://localhost:7185;http://localhost:5027",
-        "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/debug?browser={browserInspectUri}"
-      }
+  "profiles": {
+    "ComputePi.WasmBrowser": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Cross-Origin-Opener-Policy": "same-origin",
+        "Cross-Origin-Embedder-Policy": "require-corp"
+      },
+      "applicationUrl": "https://localhost:7185;http://localhost:5027",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/debug?browser={browserInspectUri}"
     }
+  }
 }
