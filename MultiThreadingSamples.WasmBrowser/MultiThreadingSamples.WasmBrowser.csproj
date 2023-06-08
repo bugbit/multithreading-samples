@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+		<WasmMainJSPath>main.js</WasmMainJSPath>
+		<OutputType>Exe</OutputType>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!-- use the threaded build of the .NET runtime for WebAssembly -->
+		<WasmEnableThreads>true</WasmEnableThreads>
+		<RunAOTCompilation>true</RunAOTCompilation>
+		<PublishTrimmed>true</PublishTrimmed>
+		<TrimMode>full</TrimMode>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<WasmExtraFilesToDeploy Include="index.html" />
+		<WasmExtraFilesToDeploy Include="main.js" />
+		<WasmExtraFilesToDeploy Include="bootstrap.min.css" />
+		<WasmExtraFilesToDeploy Include="main.css" />
+	</ItemGroup>
+</Project>
