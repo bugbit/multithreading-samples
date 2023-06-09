@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net7.0</TargetFramework>
 		<RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
@@ -13,9 +13,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<WasmExtraFilesToDeploy Include="index.html" />
-		<WasmExtraFilesToDeploy Include="main.js" />
-		<WasmExtraFilesToDeploy Include="bootstrap.min.css" />
-		<WasmExtraFilesToDeploy Include="main.css" />
+		<WasmExtraFilesToDeploy Include="*.html" />
+		<WasmExtraFilesToDeploy Include="*.js" />
 	</ItemGroup>
 </Project>

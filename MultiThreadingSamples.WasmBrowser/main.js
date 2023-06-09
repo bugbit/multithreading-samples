@@ -10,17 +10,29 @@ const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
 
 setModuleImports('main.js', {
     window: {
+        alert: msg => globalThis.window.alert(msg),
         location: {
             href: () => globalThis.window.location.href
         },
-        setContextElementById: (id, context) => globalThis.document.getElementById(id).innerHTML = context;
+        print: s => globalThis.document.getElementById('out').innerHTML += s,
+        setDisable: (id, disable) => {
+            var e = globalThis.document.getElementById(id);
+
+            if (e)
+                e.disable = disable;
+        }
     }
 });
 
-//const config = getConfig();
-//const exports = await getAssemblyExports(config.mainAssemblyName);
+const config = getConfig();
+const exports = await getAssemblyExports(config.mainAssemblyName);
 //const text = exports.MyClass.Greeting();
 //console.log(text);
 
+globalThis.SerialPi = exports.ComputePi.SerialPi;
+globalThis.ThreadPi = exports.ComputePi.ThreadPi;
+
 //document.getElementById('out').innerHTML = text;
 await dotnet.run();
+
+exports.ComputePi.OnReady();

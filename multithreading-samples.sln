@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputePi.Console", "Comput
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputePi.WasmBrowser", "ComputePi\ComputePi.WasmBrowser\ComputePi.WasmBrowser.csproj", "{1F27372B-CA88-4C86-AEB8-80A75309AF97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiThreadingSamples.WasmBrowser", "MultiThreadingSamples.WasmBrowser\MultiThreadingSamples.WasmBrowser.csproj", "{7A9FBDF6-7632-4D99-8503-CEB2D11E9629}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiThreadingSamples.WasmBrowser", "MultiThreadingSamples.WasmBrowser\MultiThreadingSamples.WasmBrowser.csproj", "{7A9FBDF6-7632-4D99-8503-CEB2D11E9629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
