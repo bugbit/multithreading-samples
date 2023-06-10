@@ -4,6 +4,6 @@ public static class Samples
 {
     public static readonly Sample[] Instance = new[]
     {
-        new Sample{ Id="computepi",Name="ComputePi", Plataform=ESamplePlataform.Console|ESamplePlataform.Wasm,JSFunction="OnClickComputePi"  }
+        new Sample{ Id=Sample.IdComputePi,Name="ComputePi", Plataform=ESamplePlataform.Console|ESamplePlataform.Wasm,JSFunction="OnClickComputePi"  }
     };
 }

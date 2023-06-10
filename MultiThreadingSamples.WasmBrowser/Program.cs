@@ -2,9 +2,7 @@ using MultiThreadingSamples.WasmBrowser;
 using System;
 using System.Runtime.InteropServices.JavaScript;
 
-var mainController = new MainController();
-
-mainController.Main();
+Main.Execute();
 
 Console.WriteLine("Hello, Browser!");
 
@@ -22,7 +20,12 @@ public partial class Interop
 
 public partial class Main
 {
+    private static readonly MainController mainController = new MainController();
 
+    internal static void Execute() => mainController.Main();
+
+    [JSExport]
+    public static void ExecuteSample(int idSample) => mainController.ExecuteSample(idSample);
     [JSExport]
     public static void SetSample(string sample)
     {

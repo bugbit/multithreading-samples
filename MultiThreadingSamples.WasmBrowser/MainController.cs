@@ -8,7 +8,19 @@ public class MainController
 
     public void Main()
     {
-        _view.Show();
-        _view.ShowMenu(Samples.Instance);
+        _view.Render();
+        _view.RenderMenu(Samples.Instance);
     }
+
+    public void ExecuteSample(int idSample)
+    {
+        var controller = CreateController(idSample);
+    }
+
+    private SampleBaseController? CreateController(int idSample)
+        => idSample switch
+        {
+            Sample.IdComputePi => new ComputePiController(),
+            _ => null
+        };
 }

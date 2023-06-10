@@ -7,7 +7,7 @@ namespace MultiThreadingSamples.WasmBrowser
 {
     public class MainView : View
     {
-        public void Show()
+        public void Render()
         {
             Interop.SetHtml("app", @"
 <div class=""page"">
@@ -29,7 +29,7 @@ namespace MultiThreadingSamples.WasmBrowser
 ");
         }
 
-        public void ShowMenu(ICollection<Sample> samples)
+        public void RenderMenu(ICollection<Sample> samples)
         {
             var sb = new StringBuilder();
 
@@ -43,8 +43,8 @@ namespace MultiThreadingSamples.WasmBrowser
         {
             sb.AppendLine(@$"
 <li class=""nav-item px-3"">
-    <a class=""nav-link"" href=""javascript:void(0)"" onclick=""globalThis.{sample.JSFunction}()"">{sample.Name}</a>
-</ li >
+    <a class=""nav-link"" href=""javascript:void(0)"" onclick=""globalThis.Main.ExecuteSample({sample.Id})"">{sample.Name}</a>
+</li >
 ");
         }
     }
