@@ -9,6 +9,14 @@ const { setModuleImports, getAssemblyExports, getConfig } = await dotnet
     .create();
 
 setModuleImports('main.js', {
+    view: {
+        setHtml: (id, html) => {
+            var e = globalThis.document.getElementById(id);
+
+            if (e)
+                e.innerHTML = html;
+        }
+    },
     window: {
         alert: msg => globalThis.window.alert(msg),
         location: {
@@ -29,6 +37,7 @@ const exports = await getAssemblyExports(config.mainAssemblyName);
 //const text = exports.MyClass.Greeting();
 //console.log(text);
 
+globalThis.OnClickComputePi = exports.ComputePi.Main;
 globalThis.SerialPi = exports.ComputePi.SerialPi;
 globalThis.ThreadPi = exports.ComputePi.ThreadPi;
 

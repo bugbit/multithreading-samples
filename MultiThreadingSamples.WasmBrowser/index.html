@@ -7,12 +7,14 @@
     <title>MultiThreadingSamples.WasmBrowser</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link href="app.css" rel="stylesheet" />
+    <link rel="modulepreload" href="./main.js" />
+    <link rel="modulepreload" href="./dotnet.js" />
 </head>
 
 <body>
-    <ul>
-        <li><a href="computepi.html">Compute Pi</a></li>
-    </ul>
+    <div id="app">Loading...</div>
+    <script type='module' src="./main.js"></script>
 </body>
-
 </html>

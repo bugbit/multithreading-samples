@@ -15,5 +15,9 @@
 	<ItemGroup>
 		<WasmExtraFilesToDeploy Include="*.html" />
 		<WasmExtraFilesToDeploy Include="*.js" />
+		<ProjectReference Include="..\MultiThreadingSamples.Shared\MultiThreadingSamples.Shared.csproj" />
+		<WasmExtraFilesToDeploy Include="bootstrap.min.css" />
+		<WasmExtraFilesToDeploy Include="bootstrap.min.css.map" />
+		<WasmExtraFilesToDeploy Include="app.css" />
 	</ItemGroup>
 </Project>

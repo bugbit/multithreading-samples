@@ -1,8 +1,12 @@
+using MultiThreadingSamples.WasmBrowser;
 using System;
 using System.Runtime.InteropServices.JavaScript;
 
+var mainController = new MainController();
+
+mainController.Main();
+
 Console.WriteLine("Hello, Browser!");
-Interop.Alert("Main");
 
 public partial class Interop
 {
@@ -39,6 +43,8 @@ public partial class MyClass
 
 public partial class ComputePi
 {
+    [JSExport]
+    internal static void Main() => Interop.Alert("Hello");
     [JSExport]
     internal static void OnReady()
     {
