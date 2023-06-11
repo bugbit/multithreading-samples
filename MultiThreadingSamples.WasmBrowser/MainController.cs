@@ -6,6 +6,8 @@ public class MainController
 {
     private MainView _view = new MainView();
 
+    public MainController() => global::Main.mainController = this;
+
     public void Main()
     {
         _view.Render();
