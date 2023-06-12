@@ -1,12 +1,11 @@
 ﻿using MultiThreadingSamples.Shared;
+using System;
 
 namespace MultiThreadingSamples.WasmBrowser;
 
 public class MainController
 {
     private MainView _view = new MainView();
-
-    public MainController() => global::Main.mainController = this;
 
     public void Main()
     {
@@ -16,13 +15,23 @@ public class MainController
 
     public void ExecuteSample(int idSample)
     {
-        var controller = CreateController(idSample);
-    }
+        var factoryControllers = FactoryControllers.Instance;
+        SampleBaseController? oldSample = factoryControllers.GetSampleController();
 
-    private SampleBaseController? CreateController(int idSample)
-        => idSample switch
+        try
         {
-            Sample.IdComputePi => new ComputePiController(),
-            _ => null
-        };
+            var controller = factoryControllers.CreateSampleController(idSample);
+
+            FactoryControllers.RemoveSampleController(ref oldSample);
+
+            controller.Execute();
+        }
+        catch (Exception ex)
+        {
+            if (oldSample != null)
+                factoryControllers.SetSampleController(oldSample);
+
+            Interop.Alert(ex.Message);
+        }
+    }
 }

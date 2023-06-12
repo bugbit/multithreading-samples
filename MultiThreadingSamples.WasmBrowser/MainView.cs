@@ -23,7 +23,7 @@ namespace MultiThreadingSamples.WasmBrowser
             </ul>
         </div>
     </div>
-    <div class=""main"">
+    <div id=""main"" class=""main"">
     </div>
 </div>
 ");

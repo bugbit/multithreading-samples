@@ -37,6 +37,8 @@ const exports = await getAssemblyExports(config.mainAssemblyName);
 //const text = exports.MyClass.Greeting();
 //console.log(text);
 
+globalThis.Main = exports.Main;
+globalThis.ComputePi = exports.ComputePi;
 globalThis.OnClickComputePi = exports.ComputePi.Main;
 globalThis.SerialPi = exports.ComputePi.SerialPi;
 globalThis.ThreadPi = exports.ComputePi.ThreadPi;

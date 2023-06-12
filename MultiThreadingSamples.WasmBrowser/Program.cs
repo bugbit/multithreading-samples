@@ -2,9 +2,7 @@ using MultiThreadingSamples.WasmBrowser;
 using System;
 using System.Runtime.InteropServices.JavaScript;
 
-var mainController = new MainController();
-
-mainController.Main();
+FactoryControllers.Instance.CreateMainController().Main();
 
 Console.WriteLine("Hello, Browser!");
 
@@ -22,15 +20,8 @@ public partial class Interop
 
 public partial class Main
 {
-    public static MainController? mainController;
-
     [JSExport]
-    public static void ExecuteSample(int idSample) => mainController?.ExecuteSample(idSample);
-    [JSExport]
-    public static void SetSample(string sample)
-    {
-
-    }
+    internal static void ExecuteSample(int idSample) => FactoryControllers.Instance.GetMainController()?.ExecuteSample(idSample);
 }
 
 public partial class MyClass
@@ -44,29 +35,16 @@ public partial class MyClass
     }
 }
 
-public class Sample<T> where T : SampleBaseController
-{
-    public static T? controller;
-}
-
-public partial class ComputePi : Sample<ComputePiController>
+public partial class ComputePi
 {
     [JSExport]
-    internal static void Main() => Interop.Alert("Hello");
-    [JSExport]
-    internal static void OnReady()
-    {
-        Interop.SetDisable("cmdserialpi", true);
-        Interop.SetDisable("cmdthreadpi", true);
-    }
-    [JSExport]
-    internal static void SerialPi()
+    internal static void OnClickSerialPi()
     {
         Console.WriteLine("SerialPi");
     }
 
     [JSExport]
-    internal static void ThreadPi()
+    internal static void OnClickThreadPi()
     {
         Console.WriteLine("ThreadPi");
     }
