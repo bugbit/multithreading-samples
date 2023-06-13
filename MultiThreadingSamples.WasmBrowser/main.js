@@ -39,11 +39,6 @@ const exports = await getAssemblyExports(config.mainAssemblyName);
 
 globalThis.Main = exports.Main;
 globalThis.ComputePi = exports.ComputePi;
-globalThis.OnClickComputePi = exports.ComputePi.Main;
-globalThis.SerialPi = exports.ComputePi.SerialPi;
-globalThis.ThreadPi = exports.ComputePi.ThreadPi;
 
 //document.getElementById('out').innerHTML = text;
 await dotnet.run();
-
-exports.ComputePi.OnReady();

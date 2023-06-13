@@ -7,24 +7,27 @@ namespace MultiThreadingSamples.WasmBrowser
 {
     public class MainView : View
     {
+        //MultiThreadingSamples
         public void Render()
         {
             Interop.SetHtml("app", @"
 <div class=""page"">
     <div class=""sidebar"">
-        <div class=""top-row pl-4 navbar navbar-dark"">
-            <a class=""navbar-brand"" href=""javascript:void(0)"">MultiThreadingSamples</a>
-            <button class=""navbar-toggler"" onclick=""ToggleNavMenu"">
-                <span class=""navbar-toggler-icon""></span>
-            </button>
+        <div class=""top-row ps-3 navbar navbar-dark"">
+            <div class=""container-fluid"">
+                <a class=""navbar-brand"" href="""">MultiThreadingSamples</a>
+                <button title=""Navigation menu"" class=""navbar-toggler"" onclick=""ToggleNavMenu"">
+                    <span class=""navbar-toggler-icon""></span>
+                </button>
+            </div>
         </div>
-        <div class=""@NavMenuCssClass"" @onclick=""ToggleNavMenu"">
+        <div class=""nav-scrollable"" @onclick=""ToggleNavMenu"">
             <ul id=""menulist"" class=""nav flex-column"">
             </ul>
         </div>
     </div>
-    <div id=""main"" class=""main"">
-    </div>
+    <article id=""main"" class=""content px-4"">
+    </article>
 </div>
 ");
         }
